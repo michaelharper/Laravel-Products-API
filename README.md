@@ -27,6 +27,26 @@ Set up your environment variables:
 
 ```bash
 cp .env.example .env
+```
+Open the .env file and configure your database connection. You can specify either MySQL or SQLite. For MySQL, set the following:
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+````
+
+For SQLite, set the following:
+```bash
+DB_CONNECTION=sqlite
+DB_DATABASE=/path_to_your_database/database.sqlite
+```
+
+After configuring the database, generate an application key:
+```bash
 php artisan key:generate
 ```
 
@@ -83,7 +103,7 @@ Below are the available API endpoints for managing products:
 
 ## Sample Data
 
-For testing and development purposes, you can find a sample product data CSV in the repository. Access the sample data here: [Sample Product Data](tests/data/sample_product_data.csv).
+For testing and development purposes, you can find a sample data CSV with 300 test products in the repository. Access the sample data here: [Sample Product Data](tests/data/sample_product_data.csv).
 
 ## Support
 If you find Laravel Products API useful and would like to support its development, consider making a donation:
@@ -95,4 +115,3 @@ Your contributions help ensure continued development and improvements to the ext
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-```
