@@ -107,6 +107,10 @@ Below are the available API endpoints for managing products:
 
 For testing and development purposes, you can find a sample data CSV with 300 test products in the repository. Access the sample data here: [Sample Product Data](tests/data/sample_product_data.csv).
 
+## Postman Collection
+
+I've included the Postman Collection for testing the Laravel Products API. You can download it here: [Laravel Products API Postman Collection](tests/data/postman_collection.json).
+
 ## Support
 If you find Laravel Products API useful and would like to support its development, consider making a donation:
 
