@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Sample Product\",\n    \"description\": \"This is a sample product description.\",\n    \"price\": 19.99\n}\n",
+					"raw": "{\n    \"name\": \"Sample Product 11111\",\n    \"description\": \"This is a sample product description.\",\n    \"price\": 239.99\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -153,7 +153,7 @@
 					"raw": "{\n    \"name\": \"Updated Product 699\",\n    \"description\": \"This is a sample product description that's been updated.\",\n    \"price\": 699.99\n}\n"
 				},
 				"url": {
-					"raw": "localhost:8000/api/products/23",
+					"raw": "localhost:8000/api/products/24",
 					"host": [
 						"localhost"
 					],
@@ -161,7 +161,7 @@
 					"path": [
 						"api",
 						"products",
-						"23"
+						"24"
 					]
 				}
 			},
@@ -177,7 +177,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "localhost:8000/api/products/23",
+					"raw": "localhost:8000/api/products/24",
 					"host": [
 						"localhost"
 					],
@@ -185,7 +185,7 @@
 					"path": [
 						"api",
 						"products",
-						"23"
+						"24"
 					]
 				}
 			},
