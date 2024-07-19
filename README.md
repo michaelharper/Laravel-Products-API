@@ -1,3 +1,5 @@
+![Laravel Logo](https://laravel.com/img/logomark.min.svg)
+
 # Laravel Products API
 
 ## Description
