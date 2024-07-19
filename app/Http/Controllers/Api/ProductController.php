@@ -41,52 +41,44 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
+        // Fun fact: Laravel handles PUT requests differently from POST requests,
+        // especially when it comes to parsing the request body.
+        // Only use JSON with PUT requests, not form data.
         Log::info('Attempting to update product', [
-            'product_id' => $product->id,
+            'product_id' => $id,
             'content_type' => $request->header('Content-Type'),
             'method' => $request->method(),
             'raw_content' => $request->getContent()
         ]);
 
-        // Parse the input data based on content type
-        if ($request->isJson() || $request->header('Content-Type') === 'text/plain') {
-            // Handle JSON data, even if Content-Type is incorrectly set to text/plain
-            $data = json_decode($request->getContent(), true) ?? [];
-        } elseif (strpos($request->header('Content-Type'), 'multipart/form-data') !== false) {
-            // For multipart form data, we need to parse it manually
-            $data = [];
-            foreach ($request->all() as $key => $value) {
-                if ($request->hasFile($key)) {
-                    $data[$key] = $request->file($key);
-                } else {
-                    $data[$key] = $value;
-                }
-            }
-        } else {
-            // For other content types, try to parse as form data
-            parse_str($request->getContent(), $data);
-        }
+        // Decode the JSON request
+        $data = json_decode($request->getContent(), true);
 
-        Log::info('Parsed request data', ['data' => $data]);
+        // Log parsed request data
+        Log::info('Parsed request data, updated product successfully', ['data' => $data]);
 
+        // Validate the data
         $validator = Validator::make($data, [
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
             Log::error('Validation failed', ['errors' => $validator->errors()]);
-            return response()->json($validator->errors(), 400);
+            return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $product->update($data);
-
-        Log::info('Product updated successfully', ['product_id' => $product->id]);
-
-        return response()->json($product, 200);
+        // Find and update the product
+        $product = Product::find($id);
+        if ($product) {
+            $product->update($data);
+            return response()->json($product, 200);
+        } else {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
     }
 
     public function destroy(Product $product)
