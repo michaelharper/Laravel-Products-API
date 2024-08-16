@@ -15,7 +15,7 @@ The Laravel Products API is a RESTful web service designed to manage product dat
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/laravel-products-api.git
+git clone https://github.com/michaelharper/laravel-products-api.git
 cd laravel-products-api
 ```
 
